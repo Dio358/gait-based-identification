@@ -1,5 +1,4 @@
 # Gait-Based Subject Identification (WISDM)  
-### CNN + LSTM for Biometric Identification from Inertial Time Series (PyTorch)
 
 This project trains a neural network to identify **which person is walking** using short windows of smartphone **gyroscope signals** from the WISDM dataset.
 
