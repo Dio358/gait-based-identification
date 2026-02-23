@@ -5,8 +5,6 @@ This project trains a neural network to identify **which person is walking** usi
 
 Unlike traditional Human Activity Recognition (HAR), which classifies *what* someone is doing, this project focuses on **biometric identification**, distinguishing *who* is walking based on gait dynamics.
 
----
-
 ## Problem Framing
 
 Human gait is naturally periodic and biomechanically constrained.  
@@ -16,8 +14,6 @@ A full **gait cycle** typically lasts ~1.0–1.2 seconds and exhibits highly ind
 A short time window covering approximately one gait cycle contains enough dynamic information to distinguish individuals.
 
 To test this, the raw sensor stream is segmented into ~1-second windows and used to train a subject classifier.
-
----
 
 ## Dataset
 
@@ -31,16 +27,12 @@ To test this, the raw sensor stream is segmented into ~1-second windows and used
 
 The dataset is automatically downloaded via **KaggleHub** when the application runs, no manual dataset configuration is required.
 
----
-
 ## Windowing Strategy
 
 - **Window size:** 20 samples (~1 second)
 - **Step size:** 10 samples (50% overlap)
 
 This produces approximately **360–400 windows per subject**, depending on recording duration.
-
----
 
 ## Data Splitting
 
@@ -51,8 +43,6 @@ Windows are split using **stratified sampling**:
 - **Test:** 10%
 
 Stratification ensures each subject is represented across splits, preventing class imbalance artifacts.
-
----
 
 ## Model Architecture
 
@@ -72,8 +62,6 @@ The model combines **convolutional feature extraction** with **temporal modeling
 - LayerNorm regularization
 - Final projection into subject ID space
 
----
-
 ## Optimization
 
 - **Loss:** Cross-Entropy
@@ -85,8 +73,6 @@ The model combines **convolutional feature extraction** with **temporal modeling
   - BatchNorm + LayerNorm  
 
 Training is seed-controlled for reproducibility.
-
----
 
 ## Experimental Results
 
@@ -101,8 +87,6 @@ Observed behavior during experimentation:
 
 > Results may vary slightly depending on random seed and hardware.
 
----
-
 ## Project Structure
 
 ```
@@ -113,8 +97,6 @@ src/
  ├── main.py      # Application entry point
 ```
 
----
-
 ## Quickstart
 
 ### 1) Install dependencies (Poetry)
@@ -123,8 +105,6 @@ src/
 poetry install
 ```
 
----
-
 ### 2) Run the application
 
 ```bash
@@ -132,41 +112,6 @@ poetry run python -m src.main
 ```
 
 The dataset will be downloaded automatically if not already present.
-
----
-
-## Engineering Focus
-
-This project emphasizes:
-
-- Clean preprocessing of inertial time-series data
-- Proper stratified splitting
-- Modular PyTorch model design
-- Reproducible experimentation
-- Device-aware execution (CPU / CUDA / MPS)
-
----
-
-## Potential Extensions
-
-- Accelerometer + gyroscope sensor fusion
-- Cross-device generalization (phone ↔ watch)
-- Frequency-domain features
-- Transformer-based temporal modeling
-- Cross-session robustness analysis
-
----
-
-## Portfolio Context
-
-This repository demonstrates:
-
-- Applied deep learning for time-series classification  
-- Biometric modeling using inertial sensors  
-- Structured model experimentation  
-- Clean, modular Python engineering  
-
----
 
 ## Author
 
